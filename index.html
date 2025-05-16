@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Gamez</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial Black', sans-serif;
+      background-color: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Starfield background */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      background-color: #111;
+      box-shadow: 0 0 10px red;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: orange;
+      text-shadow: 0 0 10px red;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: orange;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 10px red;
+    }
+
+    .nav-links a:hover {
+      color: red;
+    }
+
+    /* Center content */
+    .center-content {
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .title {
+      font-size: 60px;
+      font-weight: bold;
+      color: orange;
+      text-shadow: 0 0 20px red, 0 0 40px orange;
+      margin-bottom: 30px;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .search-bar input {
+      padding: 15px;
+      width: 60%;
+      max-width: 600px;
+      border: 2px solid red;
+      border-radius: 50px;
+      background-color: black;
+      color: white;
+      font-size: 18px;
+      outline: none;
+      box-shadow: 0 0 10px red;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">Elite Gamez</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Games</a>
+    <a href="#">Movies</a>
+    <a href="#">Chatroom</a>
+    <a href="#">AI</a>
+    <a href="#">Settings</a>
+  </div>
+</div>
+
+<!-- Center content -->
+<div class="center-content">
+  <div class="title">Elite Gamez</div>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search freely with Elite Gamez...">
+  </div>
+</div>
+
+<!-- Starfield script -->
+<script>
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const stars = [];
+  for (let i = 0; i < 100; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2,
+      speed: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    for (let star of stars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fill();
+      star.y += star.speed;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    }
+    requestAnimationFrame(animateStars);
+  }
+
+  animateStars();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>
