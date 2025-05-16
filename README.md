@@ -1,4 +1,4 @@
-## Hi there 👋
+## our best project yet i hope :)
 
 <!--
 **elite-gamez/elite-gamez** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
